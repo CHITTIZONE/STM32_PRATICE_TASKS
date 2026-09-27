@@ -1,33 +1,10 @@
-17:22:36 **** Incremental Build of configuration Debug for project LED_INPUT_FORWARD_BACKWARD_C8 ****
+00:21:17 **** Build of configuration Debug for project LED_INPUT_FORWARD_BACKWARD_C8 ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'forward':
-../Core/Src/main.c:178:13: error: invalid storage class for function 'MX_GPIO_Init'
-  178 | static void MX_GPIO_Init(void)
-      |             ^~~~~~~~~~~~
-../Core/Src/main.c:224:1: error: expected declaration or statement at end of input
-  224 | }
-      | ^
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:224:1: error: expected declaration or statement at end of input
-../Core/Src/main.c: At top level:
-../Core/Src/main.c:50:13: warning: 'MX_GPIO_Init' used but never defined
-   50 | static void MX_GPIO_Init(void);
-      |             ^~~~~~~~~~~~
-../Core/Src/main.c:215:6: warning: 'Error_Handler' defined but not used [-Wunused-function]
-  215 | void Error_Handler(void)
-      |      ^~~~~~~~~~~~~
-../Core/Src/main.c:178:13: warning: 'MX_GPIO_Init' defined but not used [-Wunused-function]
-  178 | static void MX_GPIO_Init(void)
-      |             ^~~~~~~~~~~~
-../Core/Src/main.c:141:6: warning: 'SystemClock_Config' defined but not used [-Wunused-function]
-  141 | void SystemClock_Config(void)
-      |      ^~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:81:14: warning: 'reverse' defined but not used [-Wunused-function]
-   81 |         void reverse(void)
-      |              ^~~~~~~
-make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
-"make -j16 all" terminated with exit code 2. Build might be incomplete.
+arm-none-eabi-size  LED_INPUT_FORWARD_BACKWARD_C8.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4852	     28	   1572	   6452	   1934	LED_INPUT_FORWARD_BACKWARD_C8.elf
+Finished building: default.size.stdout
+ 
 
-17:22:37 Build Failed. 4 errors, 5 warnings. (took 317ms)
+00:21:17 Build Finished. 0 errors, 0 warnings. (took 265ms)
 

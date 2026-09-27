@@ -61,13 +61,15 @@ static void MX_GPIO_Init(void);
   * @brief  The application entry point.
   * @retval int
   */
+int a[4]={A_Pin,B_Pin,C_Pin,D_Pin};
 int main(void)
 {
-	int a[4]={A_Pin,B_Pin,C_Pin,D_Pin} ;
+
 
   /* USER CODE BEGIN 1 */
 void forward(void)
 {
+	HAL_GPIO_WritePin(GPIOA,A_Pin|B_Pin|C_Pin|D_Pin,GPIO_PIN_RESET);
 	for (int i=0;i<4;i++)
 	{
 HAL_GPIO_WritePin(GPIOA,a[i],GPIO_PIN_SET);
@@ -76,10 +78,11 @@ HAL_Delay(1000);
 //{
 //	i=0;
 //}
-	}
+	}}
 
 	void reverse(void)
 	{
+		HAL_GPIO_WritePin(GPIOA,A_Pin|B_Pin|C_Pin|D_Pin,GPIO_PIN_RESET);
 for(int i=3;i>=0;i--)
 {
 	HAL_GPIO_WritePin(GPIOA,a[i],GPIO_PIN_SET);
@@ -88,6 +91,7 @@ for(int i=3;i>=0;i--)
 //		i=0;/* USER CODE END 1 */
 //	}
 }
+	}
 
   /* MCU Configuration--------------------------------------------------------*/
 
@@ -116,20 +120,20 @@ for(int i=3;i>=0;i--)
   while (1)
   {
 	  if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_5)==GPIO_PIN_SET){
+		  HAL_Delay(500);
+		  if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_5)==GPIO_PIN_SET){
 		 forward();
-	  }
+	  }}
 	  else if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_6)==GPIO_PIN_SET){
+		 HAL_Delay(500);
+		 if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_6)==GPIO_PIN_SET){
 		  reverse();
-	  }
+	  }}
 //	  else{
 //		  HAL_GPIO_TogglePin(GPIOA,A_Pin|B_Pin|C_Pin|D_Pin);
 //		  HAL_Delay(500);
 //	  }
-  }}
-	 // if(HAL_GPIO)
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
+  }}/* USER CODE BEGIN 3 */
 
   /* USER CODE END 3 */
 
@@ -197,7 +201,7 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pins : PA5 PA6 */
   GPIO_InitStruct.Pin = GPIO_PIN_5|GPIO_PIN_6;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
