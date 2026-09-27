@@ -1,0 +1,10 @@
+17:22:37 **** Incremental Build of configuration Debug for project LED_INPUT_FROWRD _BACKWARD ****
+make -j16 all 
+arm-none-eabi-size  LED_INPUT_FROWRD\ _BACKWARD.elf 
+   text	   data	    bss	    dec	    hex	filename
+    704	      4	   1572	   2280	    8e8	LED_INPUT_FROWRD _BACKWARD.elf
+Finished building: default.size.stdout
+ 
+
+17:22:37 Build Finished. 0 errors, 0 warnings. (took 256ms)
+

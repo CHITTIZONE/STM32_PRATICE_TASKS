@@ -1,0 +1,463 @@
+
+LED_INPUT_FROWRD _BACKWARD.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .isr_vector   0000010c  08000000  08000000  00001000  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  1 .text         0000019c  0800010c  0800010c  0000110c  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .rodata       00000010  080002a8  080002a8  000012a8  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  3 .ARM.extab    00000000  080002b8  080002b8  00002004  2**0
+                  CONTENTS
+  4 .ARM          00000000  080002b8  080002b8  00002004  2**0
+                  CONTENTS
+  5 .preinit_array 00000000  080002b8  080002b8  00002004  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  6 .init_array   00000004  080002b8  080002b8  000012b8  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  7 .fini_array   00000004  080002bc  080002bc  000012bc  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  8 .data         00000004  20000000  080002c0  00002000  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  9 .bss          00000020  20000004  080002c4  00002004  2**2
+                  ALLOC
+ 10 ._user_heap_stack 00000604  20000024  080002c4  00002024  2**0
+                  ALLOC
+ 11 .ARM.attributes 00000029  00000000  00000000  00002004  2**0
+                  CONTENTS, READONLY
+ 12 .debug_info   00000efa  00000000  00000000  0000202d  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 13 .debug_abbrev 000005cf  00000000  00000000  00002f27  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 14 .debug_aranges 000001c8  00000000  00000000  000034f8  2**3
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 15 .debug_rnglists 0000013e  00000000  00000000  000036c0  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 16 .debug_macro  000152d4  00000000  00000000  000037fe  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 17 .debug_line   00001feb  00000000  00000000  00018ad2  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 18 .debug_str    0007b495  00000000  00000000  0001aabd  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 19 .comment      00000043  00000000  00000000  00095f52  2**0
+                  CONTENTS, READONLY
+ 20 .debug_frame  00000554  00000000  00000000  00095f98  2**2
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 21 .debug_line_str 00000066  00000000  00000000  000964ec  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+
+Disassembly of section .text:
+
+0800010c <__do_global_dtors_aux>:
+ 800010c:	b510      	push	{r4, lr}
+ 800010e:	4c05      	ldr	r4, [pc, #20]	@ (8000124 <__do_global_dtors_aux+0x18>)
+ 8000110:	7823      	ldrb	r3, [r4, #0]
+ 8000112:	b933      	cbnz	r3, 8000122 <__do_global_dtors_aux+0x16>
+ 8000114:	4b04      	ldr	r3, [pc, #16]	@ (8000128 <__do_global_dtors_aux+0x1c>)
+ 8000116:	b113      	cbz	r3, 800011e <__do_global_dtors_aux+0x12>
+ 8000118:	4804      	ldr	r0, [pc, #16]	@ (800012c <__do_global_dtors_aux+0x20>)
+ 800011a:	f3af 8000 	nop.w
+ 800011e:	2301      	movs	r3, #1
+ 8000120:	7023      	strb	r3, [r4, #0]
+ 8000122:	bd10      	pop	{r4, pc}
+ 8000124:	20000004 	.word	0x20000004
+ 8000128:	00000000 	.word	0x00000000
+ 800012c:	08000290 	.word	0x08000290
+
+08000130 <frame_dummy>:
+ 8000130:	b508      	push	{r3, lr}
+ 8000132:	4b03      	ldr	r3, [pc, #12]	@ (8000140 <frame_dummy+0x10>)
+ 8000134:	b11b      	cbz	r3, 800013e <frame_dummy+0xe>
+ 8000136:	4903      	ldr	r1, [pc, #12]	@ (8000144 <frame_dummy+0x14>)
+ 8000138:	4803      	ldr	r0, [pc, #12]	@ (8000148 <frame_dummy+0x18>)
+ 800013a:	f3af 8000 	nop.w
+ 800013e:	bd08      	pop	{r3, pc}
+ 8000140:	00000000 	.word	0x00000000
+ 8000144:	20000008 	.word	0x20000008
+ 8000148:	08000290 	.word	0x08000290
+
+0800014c <main>:
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+ 800014c:	b490      	push	{r4, r7}
+ 800014e:	b086      	sub	sp, #24
+ 8000150:	af00      	add	r7, sp, #0
+int main(void)
+ 8000152:	f107 0320 	add.w	r3, r7, #32
+ 8000156:	617b      	str	r3, [r7, #20]
+	int a[4]={A_Pin,B_Pin,C_Pin,D_Pin} ;
+ 8000158:	4b05      	ldr	r3, [pc, #20]	@ (8000170 <main+0x24>)
+ 800015a:	1d3c      	adds	r4, r7, #4
+ 800015c:	cb0f      	ldmia	r3, {r0, r1, r2, r3}
+ 800015e:	e884 000f 	stmia.w	r4, {r0, r1, r2, r3}
+ 8000162:	2300      	movs	r3, #0
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+  }
+  /* USER CODE END 3 */
+}
+ 8000164:	4618      	mov	r0, r3
+ 8000166:	3718      	adds	r7, #24
+ 8000168:	46bd      	mov	sp, r7
+ 800016a:	bc90      	pop	{r4, r7}
+ 800016c:	4770      	bx	lr
+ 800016e:	bf00      	nop
+ 8000170:	080002a8 	.word	0x080002a8
+
+08000174 <NMI_Handler>:
+/******************************************************************************/
+/**
+  * @brief This function handles Non maskable interrupt.
+  */
+void NMI_Handler(void)
+{
+ 8000174:	b480      	push	{r7}
+ 8000176:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
+
+  /* USER CODE END NonMaskableInt_IRQn 0 */
+  /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
+   while (1)
+ 8000178:	bf00      	nop
+ 800017a:	e7fd      	b.n	8000178 <NMI_Handler+0x4>
+
+0800017c <HardFault_Handler>:
+
+/**
+  * @brief This function handles Hard fault interrupt.
+  */
+void HardFault_Handler(void)
+{
+ 800017c:	b480      	push	{r7}
+ 800017e:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN HardFault_IRQn 0 */
+
+  /* USER CODE END HardFault_IRQn 0 */
+  while (1)
+ 8000180:	bf00      	nop
+ 8000182:	e7fd      	b.n	8000180 <HardFault_Handler+0x4>
+
+08000184 <MemManage_Handler>:
+
+/**
+  * @brief This function handles Memory management fault.
+  */
+void MemManage_Handler(void)
+{
+ 8000184:	b480      	push	{r7}
+ 8000186:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN MemoryManagement_IRQn 0 */
+
+  /* USER CODE END MemoryManagement_IRQn 0 */
+  while (1)
+ 8000188:	bf00      	nop
+ 800018a:	e7fd      	b.n	8000188 <MemManage_Handler+0x4>
+
+0800018c <BusFault_Handler>:
+
+/**
+  * @brief This function handles Prefetch fault, memory access fault.
+  */
+void BusFault_Handler(void)
+{
+ 800018c:	b480      	push	{r7}
+ 800018e:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN BusFault_IRQn 0 */
+
+  /* USER CODE END BusFault_IRQn 0 */
+  while (1)
+ 8000190:	bf00      	nop
+ 8000192:	e7fd      	b.n	8000190 <BusFault_Handler+0x4>
+
+08000194 <UsageFault_Handler>:
+
+/**
+  * @brief This function handles Undefined instruction or illegal state.
+  */
+void UsageFault_Handler(void)
+{
+ 8000194:	b480      	push	{r7}
+ 8000196:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN UsageFault_IRQn 0 */
+
+  /* USER CODE END UsageFault_IRQn 0 */
+  while (1)
+ 8000198:	bf00      	nop
+ 800019a:	e7fd      	b.n	8000198 <UsageFault_Handler+0x4>
+
+0800019c <SVC_Handler>:
+
+/**
+  * @brief This function handles System service call via SWI instruction.
+  */
+void SVC_Handler(void)
+{
+ 800019c:	b480      	push	{r7}
+ 800019e:	af00      	add	r7, sp, #0
+
+  /* USER CODE END SVCall_IRQn 0 */
+  /* USER CODE BEGIN SVCall_IRQn 1 */
+
+  /* USER CODE END SVCall_IRQn 1 */
+}
+ 80001a0:	bf00      	nop
+ 80001a2:	46bd      	mov	sp, r7
+ 80001a4:	bc80      	pop	{r7}
+ 80001a6:	4770      	bx	lr
+
+080001a8 <DebugMon_Handler>:
+
+/**
+  * @brief This function handles Debug monitor.
+  */
+void DebugMon_Handler(void)
+{
+ 80001a8:	b480      	push	{r7}
+ 80001aa:	af00      	add	r7, sp, #0
+
+  /* USER CODE END DebugMonitor_IRQn 0 */
+  /* USER CODE BEGIN DebugMonitor_IRQn 1 */
+
+  /* USER CODE END DebugMonitor_IRQn 1 */
+}
+ 80001ac:	bf00      	nop
+ 80001ae:	46bd      	mov	sp, r7
+ 80001b0:	bc80      	pop	{r7}
+ 80001b2:	4770      	bx	lr
+
+080001b4 <PendSV_Handler>:
+
+/**
+  * @brief This function handles Pendable request for system service.
+  */
+void PendSV_Handler(void)
+{
+ 80001b4:	b480      	push	{r7}
+ 80001b6:	af00      	add	r7, sp, #0
+
+  /* USER CODE END PendSV_IRQn 0 */
+  /* USER CODE BEGIN PendSV_IRQn 1 */
+
+  /* USER CODE END PendSV_IRQn 1 */
+}
+ 80001b8:	bf00      	nop
+ 80001ba:	46bd      	mov	sp, r7
+ 80001bc:	bc80      	pop	{r7}
+ 80001be:	4770      	bx	lr
+
+080001c0 <SysTick_Handler>:
+
+/**
+  * @brief This function handles System tick timer.
+  */
+void SysTick_Handler(void)
+{
+ 80001c0:	b580      	push	{r7, lr}
+ 80001c2:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN SysTick_IRQn 0 */
+
+  /* USER CODE END SysTick_IRQn 0 */
+  HAL_IncTick();
+ 80001c4:	f000 f82e 	bl	8000224 <HAL_IncTick>
+  /* USER CODE BEGIN SysTick_IRQn 1 */
+
+  /* USER CODE END SysTick_IRQn 1 */
+}
+ 80001c8:	bf00      	nop
+ 80001ca:	bd80      	pop	{r7, pc}
+
+080001cc <SystemInit>:
+  * @note   This function should be used only after reset.
+  * @param  None
+  * @retval None
+  */
+void SystemInit (void)
+{
+ 80001cc:	b480      	push	{r7}
+ 80001ce:	af00      	add	r7, sp, #0
+
+  /* Configure the Vector Table location -------------------------------------*/
+#if defined(USER_VECT_TAB_ADDRESS)
+  SCB->VTOR = VECT_TAB_BASE_ADDRESS | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal SRAM. */
+#endif /* USER_VECT_TAB_ADDRESS */
+}
+ 80001d0:	bf00      	nop
+ 80001d2:	46bd      	mov	sp, r7
+ 80001d4:	bc80      	pop	{r7}
+ 80001d6:	4770      	bx	lr
+
+080001d8 <Reset_Handler>:
+  .weak Reset_Handler
+  .type Reset_Handler, %function
+Reset_Handler:
+
+/* Call the clock system initialization function.*/
+    bl  SystemInit
+ 80001d8:	f7ff fff8 	bl	80001cc <SystemInit>
+
+/* Copy the data segment initializers from flash to SRAM */
+  ldr r0, =_sdata
+ 80001dc:	480b      	ldr	r0, [pc, #44]	@ (800020c <LoopFillZerobss+0xe>)
+  ldr r1, =_edata
+ 80001de:	490c      	ldr	r1, [pc, #48]	@ (8000210 <LoopFillZerobss+0x12>)
+  ldr r2, =_sidata
+ 80001e0:	4a0c      	ldr	r2, [pc, #48]	@ (8000214 <LoopFillZerobss+0x16>)
+  movs r3, #0
+ 80001e2:	2300      	movs	r3, #0
+  b LoopCopyDataInit
+ 80001e4:	e002      	b.n	80001ec <LoopCopyDataInit>
+
+080001e6 <CopyDataInit>:
+
+CopyDataInit:
+  ldr r4, [r2, r3]
+ 80001e6:	58d4      	ldr	r4, [r2, r3]
+  str r4, [r0, r3]
+ 80001e8:	50c4      	str	r4, [r0, r3]
+  adds r3, r3, #4
+ 80001ea:	3304      	adds	r3, #4
+
+080001ec <LoopCopyDataInit>:
+
+LoopCopyDataInit:
+  adds r4, r0, r3
+ 80001ec:	18c4      	adds	r4, r0, r3
+  cmp r4, r1
+ 80001ee:	428c      	cmp	r4, r1
+  bcc CopyDataInit
+ 80001f0:	d3f9      	bcc.n	80001e6 <CopyDataInit>
+  
+/* Zero fill the bss segment. */
+  ldr r2, =_sbss
+ 80001f2:	4a09      	ldr	r2, [pc, #36]	@ (8000218 <LoopFillZerobss+0x1a>)
+  ldr r4, =_ebss
+ 80001f4:	4c09      	ldr	r4, [pc, #36]	@ (800021c <LoopFillZerobss+0x1e>)
+  movs r3, #0
+ 80001f6:	2300      	movs	r3, #0
+  b LoopFillZerobss
+ 80001f8:	e001      	b.n	80001fe <LoopFillZerobss>
+
+080001fa <FillZerobss>:
+
+FillZerobss:
+  str  r3, [r2]
+ 80001fa:	6013      	str	r3, [r2, #0]
+  adds r2, r2, #4
+ 80001fc:	3204      	adds	r2, #4
+
+080001fe <LoopFillZerobss>:
+
+LoopFillZerobss:
+  cmp r2, r4
+ 80001fe:	42a2      	cmp	r2, r4
+  bcc FillZerobss
+ 8000200:	d3fb      	bcc.n	80001fa <FillZerobss>
+
+/* Call static constructors */
+    bl __libc_init_array
+ 8000202:	f000 f821 	bl	8000248 <__libc_init_array>
+/* Call the application's entry point.*/
+  bl main
+ 8000206:	f7ff ffa1 	bl	800014c <main>
+  bx lr
+ 800020a:	4770      	bx	lr
+  ldr r0, =_sdata
+ 800020c:	20000000 	.word	0x20000000
+  ldr r1, =_edata
+ 8000210:	20000004 	.word	0x20000004
+  ldr r2, =_sidata
+ 8000214:	080002c0 	.word	0x080002c0
+  ldr r2, =_sbss
+ 8000218:	20000004 	.word	0x20000004
+  ldr r4, =_ebss
+ 800021c:	20000024 	.word	0x20000024
+
+08000220 <ADC1_2_IRQHandler>:
+ * @retval : None
+*/
+    .section .text.Default_Handler,"ax",%progbits
+Default_Handler:
+Infinite_Loop:
+  b Infinite_Loop
+ 8000220:	e7fe      	b.n	8000220 <ADC1_2_IRQHandler>
+	...
+
+08000224 <HAL_IncTick>:
+  * @note This function is declared as __weak to be overwritten in case of other
+  *      implementations in user file.
+  * @retval None
+  */
+__weak void HAL_IncTick(void)
+{
+ 8000224:	b480      	push	{r7}
+ 8000226:	af00      	add	r7, sp, #0
+  uwTick += uwTickFreq;
+ 8000228:	4b05      	ldr	r3, [pc, #20]	@ (8000240 <HAL_IncTick+0x1c>)
+ 800022a:	781b      	ldrb	r3, [r3, #0]
+ 800022c:	461a      	mov	r2, r3
+ 800022e:	4b05      	ldr	r3, [pc, #20]	@ (8000244 <HAL_IncTick+0x20>)
+ 8000230:	681b      	ldr	r3, [r3, #0]
+ 8000232:	4413      	add	r3, r2
+ 8000234:	4a03      	ldr	r2, [pc, #12]	@ (8000244 <HAL_IncTick+0x20>)
+ 8000236:	6013      	str	r3, [r2, #0]
+}
+ 8000238:	bf00      	nop
+ 800023a:	46bd      	mov	sp, r7
+ 800023c:	bc80      	pop	{r7}
+ 800023e:	4770      	bx	lr
+ 8000240:	20000000 	.word	0x20000000
+ 8000244:	20000020 	.word	0x20000020
+
+08000248 <__libc_init_array>:
+ 8000248:	b570      	push	{r4, r5, r6, lr}
+ 800024a:	2600      	movs	r6, #0
+ 800024c:	4d0c      	ldr	r5, [pc, #48]	@ (8000280 <__libc_init_array+0x38>)
+ 800024e:	4c0d      	ldr	r4, [pc, #52]	@ (8000284 <__libc_init_array+0x3c>)
+ 8000250:	1b64      	subs	r4, r4, r5
+ 8000252:	10a4      	asrs	r4, r4, #2
+ 8000254:	42a6      	cmp	r6, r4
+ 8000256:	d109      	bne.n	800026c <__libc_init_array+0x24>
+ 8000258:	f000 f81a 	bl	8000290 <_init>
+ 800025c:	2600      	movs	r6, #0
+ 800025e:	4d0a      	ldr	r5, [pc, #40]	@ (8000288 <__libc_init_array+0x40>)
+ 8000260:	4c0a      	ldr	r4, [pc, #40]	@ (800028c <__libc_init_array+0x44>)
+ 8000262:	1b64      	subs	r4, r4, r5
+ 8000264:	10a4      	asrs	r4, r4, #2
+ 8000266:	42a6      	cmp	r6, r4
+ 8000268:	d105      	bne.n	8000276 <__libc_init_array+0x2e>
+ 800026a:	bd70      	pop	{r4, r5, r6, pc}
+ 800026c:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8000270:	4798      	blx	r3
+ 8000272:	3601      	adds	r6, #1
+ 8000274:	e7ee      	b.n	8000254 <__libc_init_array+0xc>
+ 8000276:	f855 3b04 	ldr.w	r3, [r5], #4
+ 800027a:	4798      	blx	r3
+ 800027c:	3601      	adds	r6, #1
+ 800027e:	e7f2      	b.n	8000266 <__libc_init_array+0x1e>
+ 8000280:	080002b8 	.word	0x080002b8
+ 8000284:	080002b8 	.word	0x080002b8
+ 8000288:	080002b8 	.word	0x080002b8
+ 800028c:	080002bc 	.word	0x080002bc
+
+08000290 <_init>:
+ 8000290:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8000292:	bf00      	nop
+ 8000294:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8000296:	bc08      	pop	{r3}
+ 8000298:	469e      	mov	lr, r3
+ 800029a:	4770      	bx	lr
+
+0800029c <_fini>:
+ 800029c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800029e:	bf00      	nop
+ 80002a0:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 80002a2:	bc08      	pop	{r3}
+ 80002a4:	469e      	mov	lr, r3
+ 80002a6:	4770      	bx	lr
