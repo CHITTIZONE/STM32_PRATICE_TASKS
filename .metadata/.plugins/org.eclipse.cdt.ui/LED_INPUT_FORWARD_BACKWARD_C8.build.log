@@ -1,4 +1,4 @@
-00:21:17 **** Build of configuration Debug for project LED_INPUT_FORWARD_BACKWARD_C8 ****
+21:58:10 **** Incremental Build of configuration Debug for project LED_INPUT_FORWARD_BACKWARD_C8 ****
 make -j16 all 
 arm-none-eabi-size  LED_INPUT_FORWARD_BACKWARD_C8.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size  LED_INPUT_FORWARD_BACKWARD_C8.elf
 Finished building: default.size.stdout
  
 
-00:21:17 Build Finished. 0 errors, 0 warnings. (took 265ms)
+21:58:11 Build Finished. 0 errors, 0 warnings. (took 255ms)
 
